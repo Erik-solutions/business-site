@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 
 const slides = [
   {
-    title: "HTML",
+    title: "HTML2",
     h1: "H1",
     h2: "H2",
     h3: "H3",
