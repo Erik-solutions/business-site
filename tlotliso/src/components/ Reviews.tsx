@@ -18,7 +18,7 @@
 
 export const Reviews:React.FC<ReviewsProps>=({reviewItems})=>(
     <>
-    <div>
+    <div className="my-[4rem]">
 
     {reviewItems.map((item, index) => (
         <p key={index}
