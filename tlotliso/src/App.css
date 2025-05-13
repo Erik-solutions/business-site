@@ -47,5 +47,9 @@ h2,h3,p,a,button{
   margin:  2rem 0;
 } 
 
+a,button{
+  display: block;
+  justify-self: center;
+}
 
  }

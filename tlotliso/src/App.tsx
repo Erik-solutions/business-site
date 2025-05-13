@@ -1,5 +1,8 @@
 import { useState,useEffect } from 'react'
 import './App.css'; // Assuming your CSS is here
+import { TechnologyStack } from './components/ TechnologyStack';
+
+
 
 
 function App() {
@@ -24,19 +27,13 @@ function App() {
       
     <h1 className='text-right'>Tlotliso Makoboshane</h1>
       </div>
- 
-      <h2>Dedication Builds Resilience</h2>
-    <button className='btn__custom'>Book A Meeting </button>
-    <a>Contact Us</a>
-    <h1>H1</h1>
-    <h2>H2</h2>
-    <h3>H3</h3>
-    <p>P</p>
 
-    <button onClick={() => setDarkMode(prev => !prev)}
-      className='btn__custom'>
-        Toggle {darkMode ? 'Light' : 'Dark'} Mode
-      </button>
+      <h2>Dedication Builds Resilience</h2>
+      <button className='btn__custom'>Book A Meeting </button>
+      <a>Contact Us</a>
+   
+<TechnologyStack/>
+    
     </div>
     
   )
