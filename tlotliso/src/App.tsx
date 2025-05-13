@@ -1,7 +1,6 @@
 import { useState,useEffect } from 'react'
-import './index.css'; // Assuming your CSS is here
+import './App.css'; // Assuming your CSS is here
 
-import './App.css'
 
 function App() {
    const [darkMode, setDarkMode] = useState(false);
@@ -12,16 +11,30 @@ function App() {
   },  [darkMode]);
 
   return (
-     <div className="app">
-    <h1>This is Where it start!!!</h1>
-    <button>Tlotliso </button>
-    <a>link</a>
+  <div className="app"> <div className='my-[4rem]'>
+   <span className='flex justify-between items-center '> 
+    <h1 className=' text-left w-[80%] '> Software  Engineering with</h1> 
+    <input
+  type="checkbox" onClick={() => setDarkMode(prev => !prev)}
+  
+  className="toggle toggle-md bg-white border border-[##007bff]  text-black
+             checked:border-[#ffffff] checked:bg-black checked:text-white"
+/>
+     </span>
+      
+    <h1 className='text-right'>Tlotliso Makoboshane</h1>
+      </div>
+ 
+      <h2>Dedication Builds Resilience</h2>
+    <button className='btn__custom'>Book A Meeting </button>
+    <a>Contact Us</a>
     <h1>H1</h1>
     <h2>H2</h2>
     <h3>H3</h3>
     <p>P</p>
 
-    <button onClick={() => setDarkMode(prev => !prev)}>
+    <button onClick={() => setDarkMode(prev => !prev)}
+      className='btn__custom'>
         Toggle {darkMode ? 'Light' : 'Dark'} Mode
       </button>
     </div>
