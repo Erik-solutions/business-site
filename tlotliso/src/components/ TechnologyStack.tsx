@@ -42,7 +42,7 @@ export  const TechnologyStack=() => {
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop={true}
-          className="rounded-2xl overflow-hidden shadow-lg bg-white"
+          className="rounded-2xl overflow-hidden shadow-lg "
         >
          
           {slides.map((slide, index) => (
@@ -51,7 +51,7 @@ export  const TechnologyStack=() => {
               <h1 className=" font-semibold">{slide.h1}</h1>
               <h2 className=" font-medium">{slide.h2}</h2>
               <h3 className="">{slide.h3}</h3>
-              <p className="">{slide.p}</p>
+              <p className="text-gray-600">{slide.p}</p>
             </SwiperSlide>
           ))}
         </Swiper>
