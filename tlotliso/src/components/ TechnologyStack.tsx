@@ -44,30 +44,31 @@ export  const TechnologyStack=() => {
           loop={true}
           className="rounded-2xl overflow-hidden shadow-lg bg-white"
         >
+         
           {slides.map((slide, index) => (
             <SwiperSlide key={index} className="p-6 text-center space-y-2">
               <h1 className={`text-2xl font-bold ${slide.color}`}>{slide.title}</h1>
-              <h1 className="text-xl font-semibold">{slide.h1}</h1>
-              <h2 className="text-lg font-medium">{slide.h2}</h2>
-              <h3 className="text-base">{slide.h3}</h3>
-              <p className="text-sm text-gray-600">{slide.p}</p>
+              <h1 className=" font-semibold">{slide.h1}</h1>
+              <h2 className=" font-medium">{slide.h2}</h2>
+              <h3 className="">{slide.h3}</h3>
+              <p className="">{slide.p}</p>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
       {/* Desktop/Tablet View: Grid */}
-      <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 p-6 max-w-6xl mx-auto">
+      <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 p-4 my-6 max-w-6xl mx-auto">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="rounded-2xl shadow-lg bg-white p-6 text-center space-y-2"
+            className="rounded-2xl shadow-lg py-2  text-center space-y-2"
           >
-            <h1 className={`text-2xl font-bold ${slide.color}`}>{slide.title}</h1>
-            <h1 className="text-xl font-semibold">{slide.h1}</h1>
-            <h2 className="text-lg font-medium">{slide.h2}</h2>
-            <h3 className="text-base">{slide.h3}</h3>
-            <p className="text-sm text-gray-600">{slide.p}</p>
+            <h1 className={` font-bold ${slide.color}`}>{slide.title}</h1>
+            <h1 className=" font-semibold">{slide.h1}</h1>
+            <h2 className=" font-medium">{slide.h2}</h2>
+            <h3 className="">{slide.h3}</h3>
+            <p className=" text-gray-600">{slide.p}</p>
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react'
 import './App.css'; // Assuming your CSS is here
 import { TechnologyStack } from './components/ TechnologyStack';
+import { ReviewsRender } from './components/ReviewsRener';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -36,6 +37,7 @@ function App() {
       <a>Contact Us</a>
    
 <TechnologyStack/>
+<ReviewsRender/>
     
     </div>
     
