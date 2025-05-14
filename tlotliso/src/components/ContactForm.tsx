@@ -40,10 +40,10 @@ import { useState } from 'react';
       <div className="fixed inset-0 z-50 flex items-center
        justify-center bg-black bg-opacity-50 
        transition-opacity duration-300">
-        <div className="bg-white p-8 rounded-lg 
+        <div className=" p-8 rounded-lg 
         shadow-lg w-full max-w-md relative">
          
-          <form className="" onSubmit={handleSubmit}>
+          <form className="contact__form pt-2 border border-gray-200 pb-2 rounded-lg" onSubmit={handleSubmit}>
             <label className="flex flex-col gap-2 mb-4">
               <span className="text-sm text-left self-center w-[60%]">Enter Your Name</span>
               <input
@@ -91,7 +91,7 @@ import { useState } from 'react';
           
             <input
             
-              className="submit__btn bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+              className="submit__btn bg-blue-500  px-4 py-2 rounded cursor-pointer"
               type="submit"
               value="Send"
             />

@@ -134,3 +134,15 @@ textarea::placeholder {
 
 
 
+label{
+  color:var(--color-text);
+  
+}
+
+.book__container{
+  background: var(--color-bg);
+}
+
+.contact__form{
+  background: var(--color-bg);
+}

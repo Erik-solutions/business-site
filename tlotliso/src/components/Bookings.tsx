@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  { SquareX } from 'lucide-react';
+
 
 interface BookingCalendarProps{
     callendarOpen:boolean;
@@ -49,18 +49,15 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen,closeCa
     <div className="fixed inset-0 z-50 flex items-center
     justify-center bg-black bg-opacity-50 py-4 
     transition-opacity duration-300">
-     <div className="bg-white py-4  rounded-lg 
+     <div className=" py-4 book__container  rounded-lg border border-gray-200
      shadow-lg w-[80%] h-[100%] px-6 max-w-md relative">
 
-<div className="flex  justify-end">
-  <SquareX className="stroke-red-600"
-  /> </div>
 
 
 
     
       <h2 className="text-2xl font-bold ">Book an Appointment</h2>
-      <label className="block  text-sm mb-2 font-medium text-gray-700">
+      <label className="block  text-sm mb-2 font-medium text-red-500">
         Select a Date:
       </label>
       <input
