@@ -62,3 +62,17 @@ a,button{
   font-family: "Smooch Sans", sans-serif;
   font-weight: 400;
  }
+
+ form input, textarea{
+  margin-bottom:0.4rem;
+padding: 0.2rem;
+border-radius: 8px;
+  border:1px gray solid;
+  width:60%;
+  align-self:center;
+ }
+
+ textarea{
+  max-height: 200px;
+  overflow-y: auto;
+ }

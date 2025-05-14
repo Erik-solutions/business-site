@@ -6,6 +6,7 @@ import { ReviewsRender } from './components/ReviewsRener';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Footer } from './components/Footer';
+import { Form } from './components/ContactForm';
 
 
 
@@ -13,13 +14,20 @@ import { Footer } from './components/Footer';
 function App() {
    const [darkMode, setDarkMode] = useState(false);
 
+   const [isFormActive,setFrom] = useState(false);
+
+   function toggleForm(){
+    setFrom((prev)=>!prev)
+   }
+
       useEffect(() => {
     // Toggle the class on the document's root element
         document.documentElement.classList.toggle('dark', darkMode);
   },  [darkMode]);
 
   return (
-  <div className="app"> <div className='my-[4rem]'>
+    <>
+  <div className={`app ${isFormActive? "": ""}`}> <div className='my-[4rem]'>
    <span className='flex justify-between items-center '> 
     <h1 className=' text-left w-[80%] '> Software  Engineering with</h1> 
     <input
@@ -35,14 +43,16 @@ function App() {
 
       <h2 className="my-[4rem] font-light text-6xl">Dedication Builds Resilience</h2>
       <button className='btn__custom'>Book A Meeting </button>
-      <a>Contact Us</a>
-   
+      <a onClick={toggleForm}>Contact Us</a>
+      < Form isActive={isFormActive}/>    
 <TechnologyStack/>
 <ReviewsRender/>
 <Footer/>
+
     
     </div>
-    
+   
+    </>
   )
 }
 
