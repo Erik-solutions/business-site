@@ -46,7 +46,7 @@ p {
   font-weight: 300;
 }
 
-h2,h3,p,a,button{
+h2,h3,p,a,.action__btn {
   margin:  2rem 0;
 } 
 

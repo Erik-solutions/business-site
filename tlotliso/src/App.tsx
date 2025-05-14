@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Footer } from './components/Footer';
 import { Form } from './components/ContactForm';
+import BookingCalendar from './components/Bookings';
 
 
 
@@ -14,10 +15,16 @@ import { Form } from './components/ContactForm';
 function App() {
    const [darkMode, setDarkMode] = useState(false);
 
-   const [isFormActive,setFrom] = useState(false);
+   const [isFormActive,setForm] = useState(false);
+
+   const [isCallenderOpen,setCallender] = useState(false);
+
+   function toggleCallender(){
+    setCallender((prev)=>!prev)
+   }
 
    function toggleForm(){
-    setFrom((prev)=>!prev)
+    setForm((prev)=>!prev)
    }
 
       useEffect(() => {
@@ -42,13 +49,15 @@ function App() {
       </div>
 
       <h2 className="my-[4rem] font-light text-6xl">Dedication Builds Resilience</h2>
-      <button className='btn__custom'>Book A Meeting </button>
-      <a onClick={toggleForm}>Contact Us</a>
+      <button className='btn__custom action__btn  mr-8'
+      onClick={toggleCallender}
+      >Book A Meeting </button>
+      <a onClick={toggleForm} className=' action__btn ml-8'>Contact Us</a>
       < Form isActive={isFormActive}/>    
 <TechnologyStack/>
 <ReviewsRender/>
 <Footer/>
-
+<BookingCalendar callendarOpen={isCallenderOpen}/>
     
     </div>
    
