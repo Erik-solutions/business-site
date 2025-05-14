@@ -5,6 +5,7 @@ import { ReviewsRender } from './components/ReviewsRener';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Footer } from './components/Footer';
 
 
 
@@ -32,12 +33,13 @@ function App() {
     <h1 className='text-right'>Tlotliso Makoboshane</h1>
       </div>
 
-      <h2 className="my-[4rem]">Dedication Builds Resilience</h2>
+      <h2 className="my-[4rem] font-light text-6xl">Dedication Builds Resilience</h2>
       <button className='btn__custom'>Book A Meeting </button>
       <a>Contact Us</a>
    
 <TechnologyStack/>
 <ReviewsRender/>
+<Footer/>
     
     </div>
     

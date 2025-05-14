@@ -2,6 +2,8 @@
 @plugin "daisyui";
 
 
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -41,6 +43,7 @@ h3 {
 p {
   font-size: 12px;
   line-height: 1.1;
+  font-weight: 300;
 }
 
 h2,h3,p,a,button{
@@ -52,4 +55,10 @@ a,button{
   justify-self: center;
 }
 
+ }
+
+ .footer__container{
+  text-align: left;
+  font-family: "Smooch Sans", sans-serif;
+  font-weight: 400;
  }
