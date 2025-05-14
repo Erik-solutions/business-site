@@ -15,12 +15,12 @@ import { useState } from 'react';
     const [subject, setSubject] = useState('');
     const [textMessage, setTextMessage] = useState('');
 
-    const personDetails={
+   /* const personDetails={
       email:email,
       name:name,
       surname:surname,
       textMessage:textMessage,
-    }
+    }*/
 
 
 
