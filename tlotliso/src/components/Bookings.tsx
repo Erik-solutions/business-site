@@ -46,8 +46,8 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen,closeCa
   
   return (
 
-    <div className="fixed inset-0 z-50 flex items-center
-    justify-center bg-black bg-opacity-50 py-4 
+    <div className="bookings__container fixed inset-0 z-50 flex items-center
+    justify-center  bg-opacity-50 py-4 
     transition-opacity duration-300">
      <div className=" py-4 book__container  rounded-lg border border-gray-200
      shadow-lg w-[80%] h-[100%] px-6 max-w-md relative">

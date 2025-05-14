@@ -37,8 +37,8 @@ import { useState } from 'react';
     if (!isActive) return null;
   
     return (
-      <div className="fixed inset-0 z-50 flex items-center
-       justify-center bg-black bg-opacity-50 
+      <div className="form__container fixed inset-0 z-50 flex items-center
+       justify-center  bg-opacity-50 
        transition-opacity duration-300">
         <div className=" p-8 rounded-lg 
         shadow-lg w-full max-w-md relative">
