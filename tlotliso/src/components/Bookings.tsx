@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import  { SquareX } from 'lucide-react';
 
 interface BookingCalendarProps{
     callendarOpen:boolean;
+    closeCalendar:()=>void;
 }
 
-const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen }) => {
+const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen,closeCalendar }) => {
     
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -31,6 +33,9 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen }) => {
     if (selectedDate && selectedTime) {
       // Implement booking logic here
       alert(`Booked for ${selectedDate} at ${selectedTime}`);
+      closeCalendar();
+      
+      
     } else {
       alert('Please select a date and time.');
     }
@@ -47,6 +52,12 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen }) => {
      <div className="bg-white py-4  rounded-lg 
      shadow-lg w-[80%] h-[100%] px-6 max-w-md relative">
 
+<div className="flex  justify-end">
+  <SquareX className="stroke-red-600"
+  /> </div>
+
+
+
     
       <h2 className="text-2xl font-bold ">Book an Appointment</h2>
       <label className="block  text-sm mb-2 font-medium text-gray-700">
@@ -56,6 +67,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen }) => {
         type="date"
         className="w-full mb-4 p-2 border border-gray-300 rounded"
         onChange={handleDateChange}
+
       />
 
       {selectedDate && (
@@ -85,9 +97,10 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ callendarOpen }) => {
         onClick={handleBooking}
         className="w-full bg-green-500 text-white p-2 
         rounded hover:bg-green-600 mt-0"
-      >
-        Confirm Booking
-      </button>
+        
+      >Confirm Booking</button>
+        
+      
     </div>  </div>  
   );
 };

@@ -20,7 +20,8 @@ function App() {
    const [isCallenderOpen,setCallender] = useState(false);
 
    function toggleCallender(){
-    setCallender((prev)=>!prev)
+    setCallender((prev)=>!prev);
+    console.log(isCallenderOpen)
    }
 
    function toggleForm(){
@@ -53,11 +54,13 @@ function App() {
       onClick={toggleCallender}
       >Book A Meeting </button>
       <a onClick={toggleForm} className=' action__btn ml-8'>Contact Us</a>
-      < Form isActive={isFormActive}/>    
+      < Form isActive={isFormActive}
+      closeForm={ toggleForm}/>    
 <TechnologyStack/>
 <ReviewsRender/>
 <Footer/>
-<BookingCalendar callendarOpen={isCallenderOpen}/>
+<BookingCalendar callendarOpen={isCallenderOpen}
+closeCalendar={toggleCallender}/>
     
     </div>
    
