@@ -13,7 +13,9 @@
   --color-accent: #007bff; /* optional */
   --color-shadow: #210223;
   --color-border:#441752;
+  --color-border-rgb: 42, 71, 89;
   --btn-bg-color:#35A29F;
+  --btn-bg-color-rgb: 53, 162, 159;
 
   font-family: var(--font-family);
   font-weight: var(--font-weight);
@@ -33,8 +35,11 @@
   --color-text: rgba(255, 255, 255, 0.87);
   --color-accent:#DBE6FD;
   --color-shadow:#007bff;
-  --color-border:#F7F9F2;
-  --btn-bg-color:#79E0EE;
+  --color-border:#2A4759;
+  --color-border-rgb: 68, 23, 82;
+  --btn-bg-color:#4F1C51;
+
+  --btn-bg-color-rgb: 79, 28, 81;
   
 }
 
@@ -149,4 +154,20 @@ label{
 
 .form__container, .bookings__container{
   background: var(--color-bg);
+}
+
+.icons__container{
+  padding: 0;
+  margin: 0;
+}
+
+.sideLinks__container{
+  position: fixed;
+  bottom: 50%;
+  transform: translateY(50%);
+  right: 0;
+  background:rgba(var(--btn-bg-color-rgb), 0.6);
+  
+
+
 }
