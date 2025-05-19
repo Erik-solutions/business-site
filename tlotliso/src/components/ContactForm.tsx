@@ -28,13 +28,10 @@ const supabase = createClient(
     }*/
 
 
-    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
-      
-
-
     
+      // Insert submission into Supabase table
       const { data, error } = await supabase.from('contact_submissions').insert([
         {
           name,
@@ -43,37 +40,48 @@ const supabase = createClient(
           subject,
           message: textMessage,
         },
-      ])
-      .select('*'); // Optional but helpful for debugging;
-
-      const { data: fnData, error: fnError } = await supabase.functions.invoke('emailfunction', {
+      ]).select('*');
+    
+      if (error) {
+        alert('Failed to send message. Please try again.');
+        console.error('Insert error:', error);
+        return;
+      }
+    
+      console.log('Inserted row:', data);
+    
+      // Invoke email function to send confirmation or notification
+      const { data: fnData, error: fnError } = await supabase.functions.invoke('hello-on-insert', {
         body: {
           name,
           surname,
           email,
           subject,
-          message: textMessage
+          message: textMessage,
         },
       });
-      
+    
       if (fnError) {
         console.error('Function error:', fnError);
         if (fnData) {
           console.log('Function response:', fnData);
         }
-      }
-      
-    
-      if (error) {
-        alert('Failed to send. Try again.');
-        console.log(error)
+        alert('Message saved but failed to send email notification.');
+        // Optionally return or proceed depending on your UX decision
         return;
       }
-      console.log('Inserted row:', data); // ✅ Use the value
+    
       alert('Message submitted successfully!');
       closeForm();
+    
+      // Optionally reset your form fields here, e.g.:
+      // setName('');
+      // setSurname('');
+      // setEmail('');
+      // setSubject('');
+      // setTextMessage('');
     };
-
+    
 
 
 
