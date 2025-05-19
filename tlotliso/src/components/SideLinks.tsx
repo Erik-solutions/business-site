@@ -12,6 +12,7 @@ interface SideLinksProps{
 
 
 export const SideLinks: React.FC<SideLinksProps> = ({ icons }) => (
+ 
   <div className="flex flex-col sideLinks__container
    w-[4rem] rounded-lg px-2">
     {icons.map((item, index) => (
@@ -28,6 +29,8 @@ export const SideLinks: React.FC<SideLinksProps> = ({ icons }) => (
       </span>
     ))}
   </div>
+  
+ 
 );
 
   

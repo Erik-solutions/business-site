@@ -1,4 +1,9 @@
 import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+                'https://ltxefuhyxlyhezlvdned.supabase.co', 
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0eGVmdWh5eGx5aGV6bHZkbmVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4ODI0NTYsImV4cCI6MjA1ODQ1ODQ1Nn0.WfTV2um_rlk_ZWS1hBo1T8h0Za0DXgino3CgAUXOEcw');
 
   import React from 'react';
 
@@ -23,16 +28,35 @@ import { useState } from 'react';
     }*/
 
 
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+    
+      const { data, error } = await supabase.from('contact_submissions').insert([
+        {
+          name,
+          surname,
+          email,
+          subject,
+          message: textMessage,
+        },
+      ])
+      .select('*'); // Optional but helpful for debugging;
+    
+      if (error) {
+        alert('Failed to send. Try again.');
+        console.log(error)
+        return;
+      }
+      console.log('Inserted row:', data); // ✅ Use the value
+      alert('Message submitted successfully!');
+      closeForm();
+    };
 
-  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    alert('Email sent');
-    closeForm();
-    
-    
-    
-    // Optionally, you can reset the form or handle other logic here
-  };
+
+
+
+
+
 
     if (!isActive) return null;
   
