@@ -30,6 +30,10 @@ const supabase = createClient(
 
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+
+      
+
+
     
       const { data, error } = await supabase.from('contact_submissions').insert([
         {
@@ -41,6 +45,24 @@ const supabase = createClient(
         },
       ])
       .select('*'); // Optional but helpful for debugging;
+
+      const { data: fnData, error: fnError } = await supabase.functions.invoke('emailfunction', {
+        body: {
+          name,
+          surname,
+          email,
+          subject,
+          message: textMessage
+        },
+      });
+      
+      if (fnError) {
+        console.error('Function error:', fnError);
+        if (fnData) {
+          console.log('Function response:', fnData);
+        }
+      }
+      
     
       if (error) {
         alert('Failed to send. Try again.');
