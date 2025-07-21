@@ -1,12 +1,13 @@
 import express from "express";
-import {
- bookingsTable as submitBookingForm,
-  contactForm as submitContactForm,
-} from "../controllers/formController";
+import { contactForm, bookingsTable } from "../controllers/formController";
 
 const router = express.Router();
 
-router.post("/contact", submitContactForm);
-router.post("/booking", submitBookingForm);
+// POST /forms/contact
+router.post("/contact", contactForm);
+
+// POST /forms/booking
+router.post("/booking", bookingsTable);
 
 export default router;
+
