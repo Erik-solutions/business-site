@@ -36,6 +36,7 @@ export const bookingsTable = async (req: Request, res: Response) => {
 
   try {
     const booking = await prisma.bookingsTable.create({
+    
       data: {
         name,
         email,
