@@ -22,6 +22,6 @@ app.get("/", (_req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
-  console.log("Database URL 2:", process.env.DATABASE_URL);
+  console.log("Database URL 4:", process.env.DATABASE_URL);
 
 });
