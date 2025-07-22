@@ -1,161 +1,155 @@
-import { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import React, { useState } from 'react';
 
-const supabase = createClient(
-                'https://ltxefuhyxlyhezlvdned.supabase.co', 
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0eGVmdWh5eGx5aGV6bHZkbmVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4ODI0NTYsImV4cCI6MjA1ODQ1ODQ1Nn0.WfTV2um_rlk_ZWS1hBo1T8h0Za0DXgino3CgAUXOEcw');
+interface FormProps {
+  isActive: boolean;
+  closeForm: () => void;
+}
 
-  import React from 'react';
+export const Form: React.FC<FormProps> = ({ isActive, closeForm }) => {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [lastName, setSurname] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setTextMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [feedbackType, setFeedbackType] = useState<'success' | 'error' | ''>('');
 
-  interface FormProps {
-    isActive: boolean;
-    closeForm:()=>void;
-  }
-  
-  export const Form: React.FC<FormProps> = ({ isActive,closeForm }) => {
-    
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [subject, setSubject] = useState('');
-    const [textMessage, setTextMessage] = useState('');
+  const isValidEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-   /* const personDetails={
-      email:email,
-      name:name,
-      surname:surname,
-      textMessage:textMessage,
-    }*/
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
+    if (!isValidEmail(email)) {
+      setFeedbackType('error');
+      setFeedbackMessage('Please enter a valid email address.');
+      return;
+    }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-    
-      // Insert submission into Supabase table
-      const { data, error } = await supabase.from('contact_submissions').insert([
-        {
-          name,
-          surname,
-          email,
-          subject,
-          message: textMessage,
-        },
-      ]).select('*');
-    
-      if (error) {
-        alert('Failed to send message. Please try again.');
-        console.error('Insert error:', error);
-        return;
-      }
-    
-      console.log('Inserted row:', data);
-    
-      // Invoke email function to send confirmation or notification
-      const { data: fnData, error: fnError } = await supabase.functions.invoke('hello-on-insert', {
-        body: {
-          name,
-          surname,
-          email,
-          subject,
-          message: textMessage,
-        },
-      });
-    
-      if (fnError) {
-        console.error('Function error:', fnError);
-        if (fnData) {
-          console.log('Function response:', fnData);
-        }
-        alert('Message saved but failed to send email notification.');
-        // Optionally return or proceed depending on your UX decision
-        return;
-      }
-    
-      alert('Message submitted successfully!');
-      closeForm();
-    
-      // Optionally reset your form fields here, e.g.:
-      // setName('');
-      // setSurname('');
-      // setEmail('');
-      // setSubject('');
-      // setTextMessage('');
+    setIsSubmitting(true);
+    setFeedbackMessage('');
+    setFeedbackType('');
+
+    const formData = {
+      name,
+      lastName,
+      email,
+      subject,
+      message,
     };
-    
 
+    try {
+      const res = await fetch("https://business-site-qqev.onrender.com/forms/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (!res.ok) throw new Error("Server error");
 
+      const data = await res.json();
+      console.log("Response:", data);
 
+      setFeedbackType('success');
+      setFeedbackMessage("Form submitted successfully!");
+      setName('');
+      setSurname('');
+      setEmail('');
+      setSubject('');
+      setTextMessage('');
+      closeForm(); // Optional: delay this if you want feedback to show longer
 
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setFeedbackType('error');
+      setFeedbackMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-    if (!isActive) return null;
-  
-    return (
-      <div className="form__container fixed inset-0 z-50 flex items-center
-       justify-center  bg-opacity-50 
-       transition-opacity duration-300">
-        <div className=" p-8 rounded-lg 
-        shadow-lg w-full max-w-md relative">
-         
-          <form className="contact__form pt-2 border border-gray-200 pb-2 rounded-lg" onSubmit={handleSubmit}>
-            <label className="flex flex-col gap-2 mb-4">
-              <span className="text-sm text-left self-center w-[60%]">Enter Your Name</span>
-              <input
+  if (!isActive) return null;
+
+  return (
+    <div className="form__container fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 transition-opacity duration-300">
+      <div className="p-8 rounded-lg shadow-lg w-full max-w-md relative">
+        <form className="contact__form pt-2 border border-gray-200 pb-2 rounded-lg" onSubmit={handleSubmit}>
+          <label className="flex flex-col gap-2 mb-4">
+            <span className="text-sm text-left">Enter Your Name</span>
+            <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required className="border border-gray-300 p-2 rounded" placeholder="Joshoua" />
-            </label>
-  
-            <label className="flex flex-col gap-2 mb-4">
-              <span className="text-sm text-left self-center w-[60%]">Enter your Surname</span>
-              <input 
-              
-              value={surname}
+              required
+              className="border border-gray-300 p-2 rounded"
+              placeholder="Joshua"
+            />
+          </label>
+
+          <label className="flex flex-col gap-2 mb-4">
+            <span className="text-sm text-left">Enter your Surname</span>
+            <input
+              value={lastName}
               onChange={(e) => setSurname(e.target.value)}
-              required className="border border-gray-300 p-2 rounded" placeholder="Josh" />
-            </label>
-  
-            <label className="flex flex-col gap-2 mb-4">
-              <span className="text-sm text-left self-center w-[60%]">Enter your email address</span>
-              <input 
+              required
+              className="border border-gray-300 p-2 rounded"
+              placeholder="Smith"
+            />
+          </label>
+
+          <label className="flex flex-col gap-2 mb-4">
+            <span className="text-sm text-left">Enter your email address</span>
+            <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required className="border border-gray-300 p-2 rounded" placeholder="joshoua@josh.com" />
-            </label>
-  
-            <label className="flex flex-col gap-2 mb-4">
-              <span className="text-sm text-left self-center w-[60%]">Enter subject</span>
-              <input
-
-            value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-               required className="border border-gray-300 p-2 rounded" placeholder="Service Ordering" />
-            </label>
-  
-            <label className="flex flex-col gap-2 mb-4">
-              <span className="text-sm text-left self-center" 
-              >Message</span>
-              <textarea 
-              value={textMessage}
-              onChange={(e) => setTextMessage(e.target.value)}
-              required className="border border-gray-300 p-2 rounded" placeholder="message" />
-            </label>
-  
-          
-            <input
-            
-              className="submit__btn bg-blue-500  px-4 py-2 rounded cursor-pointer"
-              type="submit"
-              value="Send"
+              required
+              className="border border-gray-300 p-2 rounded"
+              placeholder="joshua@example.com"
             />
+          </label>
 
+          <label className="flex flex-col gap-2 mb-4">
+            <span className="text-sm text-left">Enter subject</span>
+            <input
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              required
+              className="border border-gray-300 p-2 rounded"
+              placeholder="Service Inquiry"
+            />
+          </label>
 
-  
+          <label className="flex flex-col gap-2 mb-4">
+            <span className="text-sm text-left">Message</span>
+            <textarea
+              value={message}
+              onChange={(e) => setTextMessage(e.target.value)}
+              required
+              className="border border-gray-300 p-2 rounded"
+              placeholder="Type your message here..."
+            />
+          </label>
 
-          </form>
-        </div>
+          {feedbackMessage && (
+            <p className={`text-sm mb-2 ${feedbackType === 'error' ? 'text-red-500' : 'text-green-600'}`}>
+              {feedbackMessage}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className={`submit__btn bg-blue-500 text-white px-4 py-2 rounded ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Sending...' : 'Send'}
+          </button>
+        </form>
       </div>
-    );
-  };
+    </div>
+  );
+};
+export default Form;
   

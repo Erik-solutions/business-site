@@ -20,6 +20,7 @@ model contactForm {
   lastName String  
   message String 
   email String  
+  subject String
   createAT DateTime @default (now())
   
   }
