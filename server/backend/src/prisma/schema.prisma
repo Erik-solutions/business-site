@@ -31,7 +31,7 @@ model contactForm {
   email       String
   phone       String?
   service     String?    // what service is being booked
-  time   string 
+  time   String 
   bookingDate DateTime  // actual appointment date
   notes       String?   // optional additional notes
   createdAt   DateTime  @default(now())
