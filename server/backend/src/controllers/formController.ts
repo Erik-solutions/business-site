@@ -28,7 +28,7 @@ export const contactForm = async (req: Request, res: Response) => {
 
 // Booking Form Submission
 export const bookingsTable = async (req: Request, res: Response) => {
-  const { name, email, phone, service, bookingDate, notes } = req.body;
+  const { name, email, phone, service,time, bookingDate, notes } = req.body;
 
   if (!name || !email || !phone || !service || !bookingDate) {
     return res.status(400).json({ error: "Name, email, phone, service, and booking date are required." });
@@ -42,6 +42,7 @@ export const bookingsTable = async (req: Request, res: Response) => {
         email,
         phone,
         service,
+        time,
         bookingDate: new Date(bookingDate),
         notes,
       },
