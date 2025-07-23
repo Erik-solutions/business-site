@@ -28,9 +28,10 @@ model contactForm {
   model bookingsTable  {
     id Int @id @default (autoincrement())
     name String 
-    email       String
+  email       String
   phone       String?
   service     String?    // what service is being booked
+  time   string 
   bookingDate DateTime  // actual appointment date
   notes       String?   // optional additional notes
   createdAt   DateTime  @default(now())

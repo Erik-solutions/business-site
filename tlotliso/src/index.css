@@ -126,7 +126,7 @@ button:focus-visible {
 
 input::placeholder,
 textarea::placeholder {
-  color: #DDDDDD; 
+  color: #3f3a3a; 
   font-size: 11px;
   opacity: 1;  /* Ensures full opacity, especially in Firefox */
 }
